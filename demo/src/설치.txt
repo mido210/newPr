@@ -1,0 +1,4 @@
+maven 최신 버전 설치 https://maven.apache.org/download.cgi 링크 
+
+환경 변수 설정 압축 푼 폴더를 선택 + 이름 M2_HOME으로 설정
+path 설정 %M2_HOME%\bin으로 추가 
