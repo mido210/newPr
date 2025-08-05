@@ -1,5 +1,6 @@
 package com.example;
 
+
 public class Company {
 	private String id; // 아이디 
 	private String password; // 비밀번호 
