@@ -4,11 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 //@AllArgsConstructor // 모든 파라미터의 생성자 
 //@NoArgsConstructor// 기본생성자
+@ToString
 public class Company {
 	private String id; // 아이디 
 	private String password; // 비밀번호 

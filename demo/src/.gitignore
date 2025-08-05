@@ -1,0 +1,25 @@
+# 이 줄은 주석입니다.
+
+# 컴파일된 클래스 파일
+*.class
+
+# IDE 관련 파일 (IntelliJ IDEA)
+.idea/
+*.iml
+
+# IDE 관련 파일 (VSCode)
+.vscode/
+
+# Maven 빌드 결과물
+/target/
+
+# Gradle 빌드 결과물
+/build/
+.gradle/
+
+# Log 파일
+*.log
+
+# 실행 가능한 파일
+*.jar
+*.war

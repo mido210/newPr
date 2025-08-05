@@ -6,3 +6,14 @@
 0:0:0:0:0:0:0:1 - - [05/Aug/2025:17:46:44 +0900] "GET /client.html HTTP/1.1" 304 - http-bio-8080-exec-9 2
 0:0:0:0:0:0:0:1 - - [05/Aug/2025:17:47:11 +0900] "POST /summit/company HTTP/1.1" 400 1112 http-bio-8080-exec-10 1
 0:0:0:0:0:0:0:1 - - [05/Aug/2025:17:48:22 +0900] "POST /summit/company HTTP/1.1" 400 1112 http-bio-8080-exec-1 1
+0:0:0:0:0:0:0:1 - - [05/Aug/2025:18:36:52 +0900] "POST /summit/company HTTP/1.1" 400 1112 http-bio-8080-exec-4 1
+0:0:0:0:0:0:0:1 - - [05/Aug/2025:18:37:35 +0900] "GET / HTTP/1.1" 304 - http-bio-8080-exec-1 22
+0:0:0:0:0:0:0:1 - - [05/Aug/2025:18:37:36 +0900] "GET /companySignUp.html HTTP/1.1" 200 1031 http-bio-8080-exec-3 3
+0:0:0:0:0:0:0:1 - - [05/Aug/2025:18:40:16 +0900] "GET /companySignUp.html HTTP/1.1" 200 1092 http-bio-8080-exec-1 15
+0:0:0:0:0:0:0:1 - - [05/Aug/2025:18:43:38 +0900] "POST /summit/company HTTP/1.1" 200 401 http-bio-8080-exec-4 5
+0:0:0:0:0:0:0:1 - - [05/Aug/2025:18:43:47 +0900] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 1047 http-bio-8080-exec-6 2
+0:0:0:0:0:0:0:1 - - [05/Aug/2025:20:32:27 +0900] "GET /summit/companySignUp.html HTTP/1.1" 404 1001 http-bio-8080-exec-1 17
+0:0:0:0:0:0:0:1 - - [05/Aug/2025:20:32:27 +0900] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 1047 http-bio-8080-exec-3 0
+0:0:0:0:0:0:0:1 - - [05/Aug/2025:20:32:49 +0900] "GET / HTTP/1.1" 304 - http-bio-8080-exec-4 3
+0:0:0:0:0:0:0:1 - - [05/Aug/2025:20:32:50 +0900] "GET /companySignUp.html HTTP/1.1" 304 - http-bio-8080-exec-5 11
+0:0:0:0:0:0:0:1 - - [05/Aug/2025:20:33:12 +0900] "POST /summit/company HTTP/1.1" 200 401 http-bio-8080-exec-6 6
