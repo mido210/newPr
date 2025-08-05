@@ -19,13 +19,13 @@ public class CompanySignUP extends HttpServlet {
 
 
     // 사업자 번호 정규식: 3자리-2자리-5자리
-    private static final Pattern BUSINESS_NUMBER_PATTERN = Pattern.compile("^\\d{3}-\\d{2}-\\d{5}$");
+    private static final Pattern BUSINESS_NUMBER_PATTERN = Pattern.compile("^\\d{3}-\\d{3}-\\d{3}$");
     
     // 아이디 정규식: 4~20자, 영문 소문자/숫자, 첫 글자 영문
-    private static final Pattern ID_PATTERN = Pattern.compile("^[a-z][a-z0-9]{3,19}$");
+    private static final Pattern ID_PATTERN = Pattern.compile("^[a-z0-9]{3,19}$");
 
     // 비밀번호 정규식: 8~20자, 최소 1개 대/소문자, 숫자, 특수문자 포함
-    private static final Pattern PASSWORD_PATTERN = Pattern.compile("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"|,.<>/?]).{8,20}$");
+    private static final Pattern PASSWORD_PATTERN = Pattern.compile("^[a-z0-9]{3,19}$");
 
     // 이메일 정규식
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$");

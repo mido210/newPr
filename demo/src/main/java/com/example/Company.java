@@ -1,6 +1,14 @@
 package com.example;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+//@AllArgsConstructor // 모든 파라미터의 생성자 
+//@NoArgsConstructor// 기본생성자
 public class Company {
 	private String id; // 아이디 
 	private String password; // 비밀번호 
