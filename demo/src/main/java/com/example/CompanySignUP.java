@@ -74,8 +74,10 @@ public class CompanySignUP extends HttpServlet {
         Company newCompany = new Company(id, password, companyName, businessNumber, address, email);
         companyList.add(newCompany);
 
+        System.out.println(companyList);
+
         request.setAttribute("registeredCompany", newCompany);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/company-result.html");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.html");
         dispatcher.forward(request, response);
     }
 }
