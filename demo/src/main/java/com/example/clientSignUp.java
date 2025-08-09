@@ -9,7 +9,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-@WebServlet("/submit/client")
+@WebServlet("/summit/client")
 public class ClientSignUp extends HttpServlet {
 
     private static List<Client> clientList = new ArrayList<>();
@@ -19,7 +19,8 @@ public class ClientSignUp extends HttpServlet {
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,6}$");
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
         String id = request.getParameter("id");
@@ -57,4 +58,8 @@ public class ClientSignUp extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/index.html");
         dispatcher.forward(request, response);
     }
+
+    public static List<Client> getClientList() {
+        return clientList;
+      }
 }

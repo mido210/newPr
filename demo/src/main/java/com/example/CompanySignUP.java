@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+
 // 사업자 회원 가입
+
 @WebServlet("/summit/company")
 public class CompanySignUP extends HttpServlet {
 	private static List<Company> companyList = new ArrayList<>();
@@ -81,4 +84,8 @@ public class CompanySignUP extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/index.html");
         dispatcher.forward(request, response);
     }
+     public static List<Company> getCompanyList() {
+            return companyList;
+        }
+
 }
