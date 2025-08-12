@@ -2,7 +2,7 @@
 
 
 package com.example;
-
+// 안
 public class Client {
     private String id;
     private String password;
