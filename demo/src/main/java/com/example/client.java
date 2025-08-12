@@ -2,7 +2,7 @@
 
 
 package com.example;
-// 안
+// git에 이름 대문자로 업로드 1
 public class Client {
     private String id;
     private String password;
