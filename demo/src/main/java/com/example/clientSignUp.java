@@ -11,7 +11,7 @@ import javax.servlet.http.*;
 
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
-
+// git에 이름 대문자로 업로드 2
 @WebServlet("/summit/client")
 public class ClientSignUp extends HttpServlet {
 
