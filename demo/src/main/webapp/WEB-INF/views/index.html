@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<base href="/" />
 	<title>home</title>
 </head>
 <body>
+	<form action="/logout" method="post">
+		<button type="submit">로그아웃</button>
+	</form>
 	<h1>환영합니다, <span th:text="${session.loginUser.id}">사용자</span>님</h1>
+
 	<div id="app">
-		<a href="companySignUp.html"><button>사업 회원가입</button></a>
-		<a href="client.html"><button>고객 회원가입</button></a>
-		<a href="login.html"><button>로그인</button></a>
+		<!-- 권한이 CLIENT일 때 고객 마이페이지 보임 -->
+		<a href="/companyMyPage" th:if="${session.loginUser.role.name() == 'CLIENT'}">
+			<button>고객 마이페이지</button>
+		</a>
+
+		<!-- 권한이 COMPANY일 때 사업자 마이페이지 보임 -->
+		<a href="/companyMyPage" th:if="${session.loginUser.role.name() == 'COMPANY'}">
+			<button>사업자 마이페이지</button>
+		</a>
+
+		<!-- 로그인하지 않았을 때 로그인/회원가입 버튼 보임 -->
+		<a href="client.html" th:unless="${session.loginUser != null}">
+			<button>고객 회원가입</button>
+		</a>
+		<a href="companySignUp.html" th:unless="${session.loginUser != null}">
+			<button>사업 회원가입</button>
+		</a>
+		<a href="login.html" th:unless="${session.loginUser != null}">
+			<button>로그인</button>
+		</a>
 	</div>
 </body>
 </html>
