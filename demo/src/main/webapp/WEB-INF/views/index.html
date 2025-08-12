@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<base href="/" />
+	<title>home</title>
+</head>
+<body>
+	<h1>환영합니다, <span th:text="${session.loginUser.id}">사용자</span>님</h1>
+	<div id="app">
+		<a href="companySignUp.html"><button>사업 회원가입</button></a>
+		<a href="client.html"><button>고객 회원가입</button></a>
+		<a href="login.html"><button>로그인</button></a>
+	</div>
+</body>
+</html>

@@ -1,1 +1,7 @@
+com\example\Role.class
+com\example\Client.class
+com\example\Login.class
+com\example\Main.class
+com\example\Company.class
+com\example\CompanySignUP.class
 com\example\ClientSignUp.class

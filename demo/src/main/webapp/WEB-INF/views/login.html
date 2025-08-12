@@ -15,5 +15,9 @@
 
 		<button type="submit">로그인</button>
 	</form>
+
+	<div th:if="${authenticated != null}">
+		<p th:text="'로그인 상태: ' + (${authenticated} ? '성공' : '실패')"></p>
+	</div>
 </body>
 </html>

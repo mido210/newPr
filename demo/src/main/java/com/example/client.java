@@ -8,14 +8,16 @@ public class Client {
     private String password;
     private String name;
     private String email;
+    private Role role = Role.CLIENT;
 
     public Client() {}
 
-    public Client(String id, String password, String name, String email) {
+    public Client(String id, String password, String name, String email, Role role) {
         this.id = id;
         this.password = password;
         this.name = name;
         this.email = email;
+        this.role = role;
     }
 
     // Getter & Setter
@@ -30,5 +32,7 @@ public class Client {
 
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
+
+    public Role getRole(){return role;}
 }
 

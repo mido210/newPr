@@ -9,6 +9,9 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.WebContext;
+
 @WebServlet("/summit/client")
 public class ClientSignUp extends HttpServlet {
 
@@ -17,6 +20,16 @@ public class ClientSignUp extends HttpServlet {
     private static final Pattern ID_PATTERN = Pattern.compile("^[a-z0-9]{4,20}$");
     private static final Pattern PASSWORD_PATTERN = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d@$!%*?&]{8,}$");
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^[\\w.-]+@[\\w.-]+\\.[A-Za-z]{2,6}$");
+
+      @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+         response.setContentType("text/html;charset=UTF-8");
+        // Thymeleaf를 사용해 companySignUp.html 렌더링
+        WebContext ctx = new WebContext(request, response, getServletContext(), request.getLocale());
+
+        TemplateEngine templateEngine = (TemplateEngine) getServletContext().getAttribute("templateEngine");
+        templateEngine.process("client", ctx, response.getWriter());
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -51,7 +64,7 @@ public class ClientSignUp extends HttpServlet {
             }
         }
 
-        Client newClient = new Client(id, password, name, email);
+        Client newClient = new Client(id, password, name, email, Role.CLIENT);
         clientList.add(newClient);
 
         request.setAttribute("registeredClient", newClient);

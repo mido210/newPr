@@ -6,34 +6,36 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
-// 사업자 회원 가입
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.WebContext;
 
 @WebServlet("/summit/company")
 public class CompanySignUP extends HttpServlet {
-	private static List<Company> companyList = new ArrayList<>();
 
+    private static final long serialVersionUID = 1L;
 
-    // 사업자 번호 정규식: 3자리-2자리-5자리
+    private static List<Company> companyList = new ArrayList<>();
+
     private static final Pattern BUSINESS_NUMBER_PATTERN = Pattern.compile("^\\d{3}-\\d{3}-\\d{3}$");
-    
-    // 아이디 정규식: 4~20자, 영문 소문자/숫자, 첫 글자 영문
     private static final Pattern ID_PATTERN = Pattern.compile("^[a-z0-9]{3,19}$");
-
-    // 비밀번호 정규식: 8~20자, 최소 1개 대/소문자, 숫자, 특수문자 포함
     private static final Pattern PASSWORD_PATTERN = Pattern.compile("^[a-z0-9]{3,19}$");
-
-    // 이메일 정규식
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$");
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+         response.setContentType("text/html;charset=UTF-8");
+        // Thymeleaf를 사용해 companySignUp.html 렌더링
+        WebContext ctx = new WebContext(request, response, getServletContext(), request.getLocale());
+
+        TemplateEngine templateEngine = (TemplateEngine) getServletContext().getAttribute("templateEngine");
+        templateEngine.process("companySignUp", ctx, response.getWriter());
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -62,30 +64,29 @@ public class CompanySignUP extends HttpServlet {
             return;
         }
 
-        if (companyName == null || companyName.trim().isEmpty() || 
+        if (companyName == null || companyName.trim().isEmpty() ||
             businessNumber == null || businessNumber.trim().isEmpty()) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "필수 정보가 누락되었습니다.");
             return;
         }
-        
+
         Matcher matcher = BUSINESS_NUMBER_PATTERN.matcher(businessNumber);
         if (!matcher.matches()) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "사업자 번호 형식이 올바르지 않습니다. (예: 123-45-67890)");
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "사업자 번호 형식이 올바르지 않습니다. (예: 123-456-789)");
             return;
         }
 
-        // 모든 검증 통과 후 객체 생성 및 저장
-        Company newCompany = new Company(id, password, companyName, businessNumber, address, email);
+        // Company 객체 생성 후 리스트에 추가
+        Company newCompany = new Company(id, password, companyName, businessNumber, address, email, Role.COMPANY);
         companyList.add(newCompany);
 
-        System.out.println(companyList);
+        System.out.println("현재 등록된 회사 리스트: " + companyList);
 
-        request.setAttribute("registeredCompany", newCompany);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.html");
-        dispatcher.forward(request, response);
+        // 회원가입 완료 후 index.html로 리다이렉트
+        response.sendRedirect(request.getContextPath() + "/index.html");
     }
-     public static List<Company> getCompanyList() {
-            return companyList;
-        }
 
+    public static List<Company> getCompanyList() {
+        return companyList;
+    }
 }
