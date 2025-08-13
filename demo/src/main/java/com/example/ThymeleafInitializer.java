@@ -16,20 +16,20 @@ public class ThymeleafInitializer implements ServletContextListener {
         ServletContext context = sce.getServletContext();
 
         ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver(context);
-        templateResolver.setPrefix("/WEB-INF/views/");  // WEB-INF 내부 views 폴더
+        templateResolver.setPrefix("/WEB-INF/views/");  
         templateResolver.setSuffix(".html");
         templateResolver.setCharacterEncoding("UTF-8");
-        templateResolver.setTemplateMode("HTML");
+        templateResolver.setTemplateMode("HTML"); // 또는 "HTML5"
         templateResolver.setCacheable(false);
 
         TemplateEngine templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
 
+        // 컨텍스트에 templateEngine 저장
         context.setAttribute("templateEngine", templateEngine);
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        // 종료 시 처리 필요시 작성
     }
 }

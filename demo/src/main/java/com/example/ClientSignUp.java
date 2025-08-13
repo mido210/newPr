@@ -31,46 +31,49 @@ public class ClientSignUp extends HttpServlet {
         templateEngine.process("client", ctx, response.getWriter());
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
+  @Override
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    request.setCharacterEncoding("UTF-8");
 
-        String id = request.getParameter("id");
-        String password = request.getParameter("password");
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
+    String id = request.getParameter("id");
+    String password = request.getParameter("password");
+    String name = request.getParameter("name");
+    String email = request.getParameter("email");
 
-        if (id == null || !ID_PATTERN.matcher(id).matches()) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "아이디 형식이 올바르지 않습니다.");
-            return;
-        }
-
-        if (password == null || !PASSWORD_PATTERN.matcher(password).matches()) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "비밀번호는 최소 8자, 숫자/문자 포함이어야 합니다.");
-            return;
-        }
-
-        if (email == null || !EMAIL_PATTERN.matcher(email).matches()) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "이메일 형식이 올바르지 않습니다.");
-            return;
-        }
-
-        // 아이디 중복 확인
-        for (Client c : clientList) {
-            if (c.getId().equals(id)) {
-                response.sendError(HttpServletResponse.SC_CONFLICT, "이미 존재하는 아이디입니다.");
-                return;
-            }
-        }
-
-        Client newClient = new Client(id, password, name, email, Role.CLIENT);
-        clientList.add(newClient);
-
-        request.setAttribute("registeredClient", newClient);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.html");
-        dispatcher.forward(request, response);
+    // 유효성 검사
+    if (id == null || !ID_PATTERN.matcher(id).matches()) {
+        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "아이디 형식이 올바르지 않습니다.");
+        return;
     }
+
+    if (password == null || !PASSWORD_PATTERN.matcher(password).matches()) {
+        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "비밀번호는 최소 8자, 숫자/문자 포함이어야 합니다.");
+        return;
+    }
+
+    if (email == null || !EMAIL_PATTERN.matcher(email).matches()) {
+        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "이메일 형식이 올바르지 않습니다.");
+        return;
+    }
+
+    // 아이디 중복 확인
+    for (Client c : clientList) {
+        if (c.getId().equals(id)) {
+            response.sendError(HttpServletResponse.SC_CONFLICT, "이미 존재하는 아이디입니다.");
+            return;
+        }
+    }
+
+    Client newClient = new Client(id, password, name, email, Role.CLIENT);
+    clientList.add(newClient);
+
+    System.out.println("현재 등록된 클라이언트 리스트: " + clientList);
+
+    // 회원가입 완료 후 index.html로 리다이렉트
+    response.sendRedirect(request.getContextPath() + "/index.html");
+}
+
 
     public static List<Client> getClientList() {
         return clientList;

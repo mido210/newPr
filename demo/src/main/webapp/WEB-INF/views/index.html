@@ -19,7 +19,7 @@
 		</a>
 
 		<!-- 권한이 COMPANY일 때 사업자 마이페이지 보임 -->
-		<a href="/companyMyPage" th:if="${session.loginUser.role.name() == 'COMPANY'}">
+		<a href="/summit/companyMyPage" th:if="${session.loginUser.role.name() == 'COMPANY'}">
 			<button>사업자 마이페이지</button>
 		</a>
 

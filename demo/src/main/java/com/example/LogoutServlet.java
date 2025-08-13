@@ -8,7 +8,7 @@ import javax.servlet.http.*;
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // 세션이 있으면 가져오고, 없으면 null 반환
         HttpSession session = request.getSession(false);

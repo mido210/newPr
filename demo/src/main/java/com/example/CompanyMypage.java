@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
-@WebServlet("/companyMyPage") // URL 경로
+@WebServlet("/summit/companyMyPage") // URL 경로
 public class CompanyMypage extends HttpServlet {
 
     @Override

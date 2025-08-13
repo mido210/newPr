@@ -50,7 +50,7 @@ public class Company {
 		return password;
 	}
 
-	public void SetPassword(String password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
