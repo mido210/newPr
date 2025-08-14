@@ -1,0 +1,39 @@
+<!-- 고객 마이파이지 화면 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>마이페이지</title>
+</head>
+<body>
+    <h1>고객 마이페이지</h1>
+    <br>
+
+    <button onclick="location.href= 12341 ">비밀 번호 변경</button>
+    <button onclick="location.href= 12341 ">정보 수정</button>
+    <button onclick="location.href= 12341 ">회원 탈퇴</button>
+    <button onclick="location.href= 12341 ">로그 아웃</button>
+    <br>
+
+
+
+    <h3>고객 정보</h3>
+    <p>ID     : <span th:text="${session.loginUser.id}"></span>  </p>
+    <p>이름   : <span th:text="${session.loginUser.name}"></span></p>
+    <p>이메일 : <span th:text="${session.loginUser.email}"></span></p>
+    <br>
+
+    <h3>고객 주문 내역</h3>
+    <p>주문 날짜</p>
+    <p>주문 번</p>
+    <p>발송 상황</p>
+    <p>주문 총액</p>
+    <p>환불 </p>
+
+
+
+
+</body>
+</html>
