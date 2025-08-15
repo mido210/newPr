@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
+// 사업자 정보 변경 
 @WebServlet("/summit/infoChange")
 public class CompanyInfoChange extends HttpServlet {
 
