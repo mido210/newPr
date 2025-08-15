@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<form action="/logout" method="post">
+		<button type="submit">로그아웃</button>
+	</form>
+	<h2><span th:text="company.id">님</span></h2>
+
+	<form action="/summit/infoChange" method="post">
+		<label for="id">아이디</label>
+        <input type="text" id="id" name="id" th:value="${company.id}" required readonly="ture"><br><br>
+
+        <label for="name">업체 이름</label>
+        <input type="text" id="name" name="companyName" th:value="${company.name}" required><br><br>
+
+        <label for="address">업체 주소</label>
+        <input type="text" id="address" name="address" th:value="${company.address}" required><br><br>
+
+        <label for="email">이메일</label>
+        <input type="email" id="email" name="email" th:value="${company.email}" required><br><br>
+
+        <button type="submit">변경</button>
+	</form>
+</body>
+</html>
