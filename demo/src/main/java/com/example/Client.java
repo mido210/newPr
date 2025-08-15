@@ -35,4 +35,3 @@ public class Client {
 
     public Role getRole(){return role;}
 }
-
