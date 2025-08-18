@@ -24,9 +24,15 @@ public class CompanyInfoChange extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 
 		TemplateEngine templateEngine = (TemplateEngine) getServletContext().getAttribute("templateEngine");
-
+		
+		HttpSession session = request.getSession(false);
+		
 		WebContext ctx = new WebContext(request, response, getServletContext(), request.getLocale());
-		// 비밀번호 변경 폼 렌더링
+		 if (session != null && session.getAttribute("loginUser") instanceof Company) {
+        Company company = (Company) session.getAttribute("loginUser");
+        ctx.setVariable("company", company); // 여기서 company 넣어줌
+   		}
+
 		templateEngine.process("companyInfoChange", ctx, response.getWriter());
 	}
 @Override
