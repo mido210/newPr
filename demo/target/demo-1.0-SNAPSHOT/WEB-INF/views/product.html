@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<form action="/product/upload" method="post" enctype="multipart/form-data">
+		<label for="id">상품이름:</label>
+		<input type="text" id="productName" name="productName" required><br><br>
+
+		<label for="price">상품가격:</label>
+		<input type="number" id="price" name="price" required><br><br>
+
+		<label for="name">개수:</label>
+		<input type="number" id="count" name="count" th:value="${product != null ? product.count : 1}" required>
+		<!-- product가 null이면 product의 count의 값은 1이다 -->
+
+		<label for="profilePath">프로필:</label>
+		<input type="file" id="profilePath" name="profilePath"><br><br>
+
+		<button type="submit">상품등록</button>
+	</form>
+</body>
+
+</html>

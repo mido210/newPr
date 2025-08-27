@@ -1,0 +1,53 @@
+<!-- 고객 마이파이지 화면 -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>마이페이지</title>
+</head>
+<body>
+    <h1>고객 마이페이지</h1>
+    <br>
+
+    <script>
+        function confirmDelete(form) 
+        {
+            if (confirm('정말 회원 탈퇴하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) 
+            {
+                form.submit();
+            }
+        }
+    </script>
+
+    <!-- 정보 수정: GET /client/edit -->
+    <button type="button" onclick="location.href='/client/edit'">정보 수정</button>
+
+    <!-- 회원 탈퇴: POST /client/delete -->
+    <form action="/client/delete" method="post" style="display:inline;">
+        <button type="button" onclick="confirmDelete(this.form)">회원 탈퇴</button>
+    </form>
+
+    <!-- (선택) 로그아웃 버튼 -->
+    <form action="/logout" method="post" style="display:inline;">
+        <button type="submit">로그아웃</button>
+    </form>
+    <br><br>
+
+
+
+    <h3>고객 정보</h3>
+    <p>ID     : <span th:text="${session.loginUser.id}"></span>  </p>
+    <p>이름   : <span th:text="${session.loginUser.name}"></span></p>
+    <p>이메일 : <span th:text="${session.loginUser.email}"></span></p>
+    <br>
+
+    <h3>고객 주문 내역</h3>
+    <p>주문 날짜</p>
+    <p>주문 번</p>
+    <p>발송 상황</p>
+    <p>주문 총액</p>
+    <p>환불 </p>
+</body>
+</html>
