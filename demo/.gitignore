@@ -23,3 +23,5 @@
 # 실행 가능한 파일
 *.jar
 *.war
+
+/demo/target/

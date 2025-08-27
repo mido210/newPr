@@ -12,25 +12,40 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;
 
 @WebServlet("/account/find-id")
-public class FindIdServlet extends HttpServlet {
+public class FindIdServlet extends HttpServlet 
+{
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException, ServletException {
+            throws IOException, ServletException 
+    {
 
         resp.setContentType("text/html;charset=UTF-8");
 
         WebContext ctx = new WebContext(req, resp, getServletContext(), req.getLocale());
-        // GET에서는 아직 검색 전
-        ctx.setVariable("searched", false);
-
+        ctx.setVariable("searched", false); // GET에서는 아직 검색 전
+        
         TemplateEngine engine = (TemplateEngine) getServletContext().getAttribute("templateEngine");
         engine.process("findId", ctx, resp.getWriter());
+
+
+            /*
+            setVariable() : 템플릿(HTML)에서 사용할 변수(name=value 쌍)를 등록하는 메서드.
+            getLocale()   : 요청자의 언어 및 지역(Locale) 정보 가져오기
+            getLocale()   : 템플릿 + 변수 --> 최종 HTML로 생성
+            process()     : 브라우저에 보낼 문자 스트림(출력 통로) 꺼내기
+                            쉽게 말해, 브라우저에게 보낼 문자를 적을 종이와 펜을 꺼내는 것
+            */
+
     }
+
+
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException, ServletException {
+            throws IOException, ServletException 
+    {
 
         req.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
