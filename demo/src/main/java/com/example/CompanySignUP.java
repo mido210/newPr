@@ -86,6 +86,7 @@ public class CompanySignUP extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/index.html");
     }
 
+        // 전역 리스트로 보내주는 역할, 없으면 못 찾음
     public static List<Company> getCompanyList() {
         return companyList;
     }

@@ -24,8 +24,8 @@ import org.thymeleaf.context.WebContext;
     maxRequestSize = 1024 * 1024 * 50 // 최대 50MB
 )
 public class ProductUpload extends HttpServlet {
-    private List<Product> productList = new ArrayList<>();
-    private final String uploadDir = "C:/myapp/uploads/";
+    public static List<Product> productList = new ArrayList<>();
+    private static final String uploadDir = "C:/myapp/uploads/";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -111,5 +111,11 @@ public class ProductUpload extends HttpServlet {
             }
         }
         return "";
+    }
+
+     // 전역 리스트로 보내주는 역할, 없으면 못 찾음
+    public static List<Product> getProductList() 
+    {
+        return productList;
     }
 }
