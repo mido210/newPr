@@ -30,6 +30,7 @@ public class ProductListServlet extends HttpServlet
         }
 
             // ■3. 상품 리스트 가져오기
+        @SuppressWarnings("unchecked")
         List<Product> products = (List<Product>) getServletContext().getAttribute("productList");
 
 

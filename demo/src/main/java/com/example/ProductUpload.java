@@ -93,7 +93,8 @@ public class ProductUpload extends HttpServlet {
 
         Product product = new Product(productName, price, count, fileName);
         productList.add(product);
-
+        
+        getServletContext().setAttribute("productList", productList);
         TemplateEngine templateEngine = (TemplateEngine) getServletContext().getAttribute("templateEngine");
         WebContext ctx = new WebContext(req, resp, getServletContext(), req.getLocale());
         templateEngine.process("index", ctx, resp.getWriter());

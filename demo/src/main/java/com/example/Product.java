@@ -12,7 +12,6 @@ import lombok.Setter;
 @Setter
 // @AllArgsConstructor // 모든 파라미터의 생성자 
 @NoArgsConstructor// 기본생성자
-@WebServlet("/submit/product")
 public class Product extends HttpServlet {
 	private String productName;
 	private int count;
