@@ -94,6 +94,9 @@ public class ProductUpload extends HttpServlet {
         Product product = new Product(productName, price, count, fileName);
         productList.add(product);
 
+        // ★ 여기에 ServletContext에 저장
+        getServletContext().setAttribute("productList", productList);
+
         TemplateEngine templateEngine = (TemplateEngine) getServletContext().getAttribute("templateEngine");
         WebContext ctx = new WebContext(req, resp, getServletContext(), req.getLocale());
         templateEngine.process("index", ctx, resp.getWriter());

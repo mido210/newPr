@@ -30,11 +30,16 @@
     <button type="button" onclick="location.href='/client/productList'">상품 조회</button>
 
 
+    <!-- 장바구니: GET /client/cart -->
+    <button type="button" onclick="location.href='/client/cart'">장바구니</button>
+
+
     <!-- 회원 탈퇴: POST /client/delete -->
     <form action="/client/delete" method="post" style="display:inline;">
         <button type="button" onclick="confirmDelete(this.form)">회원 탈퇴</button>
     </form>
 
+    
     <!-- (선택) 로그아웃 버튼 -->
     <form action="/logout" method="post" style="display:inline;">
         <button type="submit">로그아웃</button>

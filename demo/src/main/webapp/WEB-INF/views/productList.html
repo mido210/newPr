@@ -34,9 +34,20 @@
                     <td th:text="${p.price}">0</td>
                     <td th:text="${p.count}">0</td>
                     <td>
-                    <img th:src="@{'/uploads/' + ${p.profilePath}}" alt="상품 이미지" width="80">
+                        <img th:src="@{'/uploads/' + ${p.profilePath}}" alt="상품 이미지" width="80">
+                    </td>
+
+                    <td>
+                        <form action="/client/cart" method="post">
+                            <input type="hidden" name="productName" th:value="${p.productName}">
+                            <input type="hidden" name="price" th:value="${p.price}">
+                            <input type="hidden" name="count" th:value="${p.count}">
+                            <input type="hidden" name="profilePath" th:value="${p.profilePath}">
+                            <button type="submit">장바구니 담기</button>
+                        </form>
                     </td>
                 </tr>
+
             </tbody>
         </table>
 
@@ -66,27 +77,36 @@
 
     2) tbody 태그
 
-        th:each="p : ${products}":  ==> 핵심은 th:each 속성
-            - products 리스트를 하나씩 반복하면서 p라는 변수에 담아 사용
-
-        1. 서버에서 전달된 products 리스트를 하나씩 반복(for-each) 돌면서 행을 만듦
-
-        2. 상세 설명
-
-            p는 각 상품(Product) 객체
-
-            ${p.productName} → 상품 이름 출력
-
-            ${p.price} → 가격 출력
-
-            ${p.count} → 수량 출력
-
-            <img th:src="@{'/uploads/' + ${p.profilePath}}"> 
-            → 상품 이미지 파일 경로를 조합해서 출력
+        <tr th:each="p : ${products}">
+            - <tr>    
+                → 테이블의 한 행(row)를 의미한다.
+            - th:each 
+                → 타임리프 반복문 속성
+            - p : ${products} 
+                → 서블릿에서 ctx.setVariable("products", products)로 
+                  넘긴 리스트.
+                → p는 products 안의 각 원소(Product 객체)를 
+                  가리키는 변수.
 
 
-        3. 결론
-        products 안에 3개의 상품이 있다면 <tr>도 3개가 자동 생성됩니다.
+                → products 리스트의 각 항목을 p라는 변수로 참조
+
+                → 즉, products 리스트의 각 상품에 대해 테이블 행을 생성함.
+                → 즉, 상품 하나당 <tr>이 하나씩 생성됩니다
+
+                        ${...}: 
+                        - 이건 Thymeleaf 표현식. 
+                        - 자바 객체의 값을 꺼내서 HTML에 출력할 때 사용
+
+
+                        
+        <td th:text="${p.productName}">상품명</td>
+
+
+
+
+
+
 
 
 3. button 태그

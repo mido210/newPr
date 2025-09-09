@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>장바구니</title>
+</head>
+<body>
+    <h2>장바구니</h2>
+
+    <!-- 장바구니가 비었을 때 -->
+    <div th:if="${cart == null or #lists.isEmpty(cart)}">
+        <p>장바구니가 비어 있습니다.</p>
+    </div>
+
+    <!-- 장바구니에 상품이 있을 때 -->
+    <div th:if="${cart != null and !#lists.isEmpty(cart)}">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>선택</th>
+                    <th>상품명</th>
+                    <th>가격</th>
+                    <th>개수</th>
+                    <th>총액</th>
+                    <th>삭제</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item, stat : ${cart}">
+                    <!-- 선택 여부 -->
+                    <td>
+                        <form action="/client/cart/select" method="post">
+                            <input type="hidden" name="index" th:value="${stat.index}">
+                            <input type="checkbox" name="selected" value="true"
+                                   th:checked="${item.selected}"
+                                   onchange="this.form.submit()">
+                        </form>
+                    </td>
+
+                    <td th:text="${item.product.productName}"></td>
+
+                    <!-- 가격 (1,000원 식으로 표시) -->
+                    <td th:text="${#numbers.formatInteger(item.product.price, 3, 'COMMA') + '원'}"></td>
+
+                    <!-- 개수 수정 가능 -->
+                    <td>
+                        <form action="/client/cart/update" method="post">
+                            <input type="hidden" name="index" th:value="${stat.index}">
+                            <input type="number" name="count" th:value="${item.count}" min="1">
+                            <button type="submit">수정</button>
+                        </form>
+                    </td>
+
+                    <!-- 총액 (콤마 표시) -->
+                    <td th:text="${#numbers.formatInteger(item.totalPrice, 3, 'COMMA') + '원'}"></td>
+
+                    <!-- 삭제 -->
+                    <td>
+                        <form action="/client/cart/delete" method="post">
+                            <input type="hidden" name="index" th:value="${stat.index}">
+                            <button type="submit">삭제</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- ✅ 하단에 선택된 상품 총액만 표시 (콤마 추가) -->
+        <h3>
+            선택된 총액:
+            <span th:text="${#numbers.formatInteger(selectedTotal, 3, 'COMMA') + '원'}"></span>
+        </h3>
+    </div>
+
+    <button onclick="location.href='/client/mypage'">마이페이지로</button>
+    <button onclick="location.href='/client/cart'">장바구니로</button>
+    <button onclick="location.href='/client/productList'">상품목록으로</button>
+</body>
+</html>
+
+
+
+
+<!--
+
+1. div 태그
+    th:if : 조건이 참일 때만 해당 태그를 렌더링 (표시)함.
+    #lists.isEmpty(...) : 리스트가 비어있는지 확인하는 타임리프 내장 함수.
+    ${cart} : 서버에서 전달된 장바구니 리스트 객체.
+
+
+    th:if="${cart == null or #lists.isEmpty(cart)}" = 타임리프 조건문.
+        * cart == null
+           → 장바구니에 상품이 하나도 없으면
+
+        * #lists.isEmpty(cart) 
+           → cart 리스트가 비어 있을 때.
+
+        : 장바구니가 비어있으면 "장바구니가 비어 있습니다." 문구 표시.
+
+
+
+
+2. table 태그
+  
+    1) <table border="1" th:if="${cart != null and !#lists.isEmpty(cart)}">
+        
+       * border="1" 
+            → 테두리 선 두께 = 1픽셀.
+
+       * th:if="${cart != null and !#lists.isEmpty(cart)}" 
+            → cart가 null이 아니고, 비어 있지도 않으면 출력.
+  
+            👉 즉, 장바구니에 상품이 하나라도 있으면 표가 표시됨.
+
+
+    2) tbody 태그
+    
+       * th:each="p : ${cart}" 
+            → cart 리스트에 들어있는 Product들을
+              하나씩 꺼내서 p라는 이름으로 사용.
+
+            → 즉, 장바구니에 담긴 상품 개수만큼 <tr>이 반복 출력됨.
+
+
+                
+     
+3. button 태그
+
+    onclick="location.href='...'"
+        → 버튼 클릭 시 지정된 URL로 이동.
+
+    - 마이페이지로 버튼 클릭 시 /client/mypage로 이동.
+    - 상품목록으로 버튼 클릭 시 /client/productList로 이동.
+
+
+
+
+
+
+
+
+-->
